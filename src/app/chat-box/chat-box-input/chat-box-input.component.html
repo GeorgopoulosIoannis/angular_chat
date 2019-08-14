@@ -1,0 +1,31 @@
+<footer class="fixed-bottom bg-info">
+
+	<form class="form-inline">
+		<div class="container">
+			<div class="row pb-3 pt-3">
+				<div class="col-8">
+					<input
+						[(ngModel)]="curMessage"
+						type="text"
+						id="message"
+						name="message"
+						value=""
+						class="form-control pull-left shadow"
+						input-focus="content"
+						placeholder="Type message here.."
+					/>
+				</div>
+				<div class="col-2">
+					<button
+						id="sendmessage"
+						(click)="sendPrivateMessage()"
+						class="btn btn-light pull-right shadow fas fa-paper-plane"
+						[disabled]="!curMessage"
+					>
+					Send
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</footer>

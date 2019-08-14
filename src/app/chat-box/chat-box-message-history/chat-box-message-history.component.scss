@@ -1,0 +1,59 @@
+h3 {
+	text-align: center;
+}
+.box3 {
+	width: 300px;
+	border-radius: 15px;
+	background: #00bfb6;
+	color: #fff;
+	padding: 20px;
+	margin-top: 15px;
+	text-align: center;
+	font-weight: 900;
+	font-family: arial;
+	position: relative;
+	overflow-wrap: break-word;
+}
+
+/* speech bubble 13 */
+
+.sb13:before {
+	content: '';
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border-left: 15px solid #00bfb6;
+	border-right: 15px solid transparent;
+	border-top: 15px solid #00bfb6;
+	border-bottom: 15px solid transparent;
+	right: -16px;
+	top: 0px;
+}
+
+/* speech bubble 14 */
+
+.sb14:before {
+	content: '';
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border-left: 15px solid transparent;
+	border-right: 15px solid #6c757d;
+	border-top: 15px solid #6c757d;
+	border-bottom: 15px solid transparent;
+	left: -16px;
+	top: 0px;
+}
+
+.content {
+	height: 75vh;
+	margin-bottom: 90px;
+	overflow-x: scroll;
+}
+
+@media (min-width: 1025px) {
+	.content {
+		height: 90vh;
+		overflow-x: scroll;
+	}
+}
