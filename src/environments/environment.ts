@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	api: 'https://cors-anywhere.herokuapp.com/https://chathubapi20190814031212.azurewebsites.net/'
+	api: 'https://localhost:44387/'
 };
 
 /*

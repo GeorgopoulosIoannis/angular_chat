@@ -6,9 +6,7 @@
 				<div *ngFor="let message of curTab.messageHistory">
 					<div
 						[ngClass]="
-							message.from.length > 0
-								? 'box3 sb14 col-4 offset-1 bg-secondary'
-								: 'box3 sb13 col-4 offset-7'
+							message.from != email ? 'box3 sb14 col-4 offset-1 bg-secondary' : 'box3 sb13 col-4 offset-7'
 						"
 					>
 						{{ message.message }}

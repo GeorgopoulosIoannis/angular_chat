@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Tab } from 'src/app/Models/tab';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
 	selector: 'chat-chat-box-input',
@@ -15,13 +16,16 @@ export class ChatBoxInputComponent implements OnInit {
 	@Input() curTab: Tab;
 	curMessage: string;
 
-	constructor(private hub: HubService, private shared: SharedService) {}
+	constructor(private hub: HubService, private shared: SharedService, private storage: StorageService) {}
 
 	sendPrivateMessage() {
-		const chatMessage = new ChatMessage('', this.curMessage, this.curTab.username);
+		const chatMessage = new ChatMessage(this.storage.get('me'), this.curMessage, this.curTab.username);
 		this.curMessage = '';
 		this.curTab.messageHistory.push(chatMessage);
 		this.hub.sendPrivateMessage(chatMessage);
+		setTimeout(() => {
+			this.shared.updateScroll();
+		}, 0);
 	}
 	ngOnInit() {}
 }

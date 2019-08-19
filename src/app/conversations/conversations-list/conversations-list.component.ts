@@ -15,9 +15,13 @@ export class ConversationsListComponent implements OnInit {
 
 	ngOnInit() {
 		this.tabList = [];
-		this.shared.curTabList.subscribe(data => {
-			this.tabList = data;
+		this.shared.getUnreadMessages().subscribe(messages => {
+			this.tabList = messages;
 		});
+
+		// this.shared.curTabList.subscribe(data => {
+		// 	this.tabList = data;
+		// });
 	}
 
 	switchTab(email) {

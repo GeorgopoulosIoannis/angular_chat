@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HubService } from './hub.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Tab } from '../Models/tab';
 import { ChatMessage } from '../Models/chat-message';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,7 +15,9 @@ export class SharedService {
 	list = [];
 	connectionEstablished = false;
 
-	constructor(private hub: HubService) {
+	unreadMessages: [ChatMessage];
+
+	constructor(private hub: HubService, private http: HttpClient) {
 		this.init();
 	}
 
@@ -31,7 +35,19 @@ export class SharedService {
 
 	changeTab(tab: Tab) {
 		tab.isActive = true;
+		this.getTabHistory(tab.username).subscribe(res => {
+			tab.messageHistory = res;
+		});
 		this.tabSource.next(tab);
+	}
+
+	getTabHistory(to, currentPage = 1): Observable<[ChatMessage]> {
+		const params = new HttpParams().set('to', to).set('currentPage', currentPage.toString());
+		return this.http.get<[ChatMessage]>(environment.api + 'api/messages', { params });
+	}
+
+	getUnreadMessages(): Observable<[ChatMessage]> {
+		return this.http.get<[ChatMessage]>(environment.api + 'api/messages/unread');
 	}
 	changeTabByEmail(email: string) {
 		for (let tab of this.tabs) {
@@ -48,11 +64,13 @@ export class SharedService {
 			let tab = this.findOrCreateTab(message.from);
 			this.pushMessageToTab(tab, message);
 			if (!tab.isActive) {
-				tab.unread += 1;
+				message.unread = true;
+			} else {
+				setTimeout(() => this.updateScroll(), 0);
 			}
-			setTimeout(() => this.updateScroll(), 0);
 			console.log(tab);
 		});
+
 		this.hub.connectionsList.subscribe(data => {
 			this.connectionListSource.next(data);
 		});
@@ -100,6 +118,5 @@ export class SharedService {
 
 	pushMessageToTab(tab: Tab, message: ChatMessage) {
 		tab.messageHistory.push(message);
-		this.updateScroll();
 	}
 }

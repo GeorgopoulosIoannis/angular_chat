@@ -23,5 +23,4 @@ export class ChatBoxLayoutComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.curTab.isActive = false;
 	}
-
 }

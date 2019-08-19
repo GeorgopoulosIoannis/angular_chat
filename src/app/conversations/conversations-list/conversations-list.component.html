@@ -12,10 +12,10 @@
 					type="button"
 					class="list-group-item list-group-item-action btn btn-outline-success"
 					*ngFor="let tab of tabList"
-					(click)="switchTab(tab.username)"
+					(click)="switchTab(tab.from)"
 				>
-					{{ tab.username }}
-					<span class="badge badge-light" [hidden]="!(tab.unread > 0)">{{ tab.unread }} unread messages</span>
+					{{ tab.from }}
+					<span class="badge badge-light" [hidden]="!(tab.unread > 0)">New unread messages</span>
 				</button>
 			</div>
 		</div>
