@@ -1,7 +1,11 @@
+<div class="row">
+	<div class="col-12">
+		<h3>{{ curTab.username }}</h3>
+	</div>
+</div>
 <div class="container-fluid content" id="historyBody">
 	<div class="row">
 		<div class="col-12">
-			<h3>{{ curTab.username }}</h3>
 			<div *ngIf="curTab">
 				<div *ngFor="let message of curTab.messageHistory">
 					<div

@@ -1,4 +1,4 @@
-<div *ngIf="tabList.length > 0; else empty">
+<div *ngIf="unreadMessages.length > 0; else empty">
 	<div class="row">
 		<div class="col-12 text-center">
 			<h1>Conversations</h1>
@@ -11,11 +11,11 @@
 				<button
 					type="button"
 					class="list-group-item list-group-item-action btn btn-outline-success"
-					*ngFor="let tab of tabList"
-					(click)="switchTab(tab.from)"
+					*ngFor="let message of unreadMessages"
+					(click)="switchTab(message.from)"
 				>
-					{{ tab.from }}
-					<span class="badge badge-light" [hidden]="!(tab.unread > 0)">New unread messages</span>
+					{{ message.from }}
+					<span class="badge badge-light">New unread messages</span>
 				</button>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 <ng-template #empty>
 	<div class="row">
 		<div class="col-12 text-center">
-			<h1>No Active Conversations</h1>
+			<h1>No Unread Messages</h1>
 		</div>
 	</div>
 </ng-template>

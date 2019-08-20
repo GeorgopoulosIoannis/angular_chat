@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { RegisterComponent } from './register/register.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [LoginComponent, RegisterComponent],
@@ -15,6 +16,7 @@ import { AuthInterceptor } from './auth.interceptor';
 		ReactiveFormsModule,
 		FormsModule,
 		HttpClientModule,
+		RouterModule,
 		JwtModule.forRoot({
 			config: {
 				tokenGetter() {

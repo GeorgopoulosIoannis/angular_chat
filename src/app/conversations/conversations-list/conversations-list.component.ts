@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { Tab } from 'src/app/Models/tab';
 import { Router } from '@angular/router';
+import { ChatMessage } from 'src/app/Models/chat-message';
 
 @Component({
 	selector: 'chat-conversations-list',
@@ -9,14 +10,14 @@ import { Router } from '@angular/router';
 	styleUrls: ['./conversations-list.component.scss']
 })
 export class ConversationsListComponent implements OnInit {
-	tabList: any;
-
+	unreadMessages: any;
 	constructor(private shared: SharedService, private router: Router) {}
 
 	ngOnInit() {
-		this.tabList = [];
+		this.unreadMessages = [];
+
 		this.shared.getUnreadMessages().subscribe(messages => {
-			this.tabList = messages;
+			this.unreadMessages = messages;
 		});
 
 		// this.shared.curTabList.subscribe(data => {

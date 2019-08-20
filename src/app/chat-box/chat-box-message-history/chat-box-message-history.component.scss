@@ -45,15 +45,17 @@ h3 {
 	top: 0px;
 }
 
-.content {
-	height: 75vh;
-	margin-bottom: 90px;
-	overflow-x: scroll;
+@media (max-width: 376px) {
+	.content {
+		height: 72vh;
+		margin-bottom: 90px;
+		overflow-x: scroll;
+	}
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 378px) and(max-width: 1025px) {
 	.content {
-		height: 90vh;
+		height: 83vh;
 		overflow-x: scroll;
 	}
 }

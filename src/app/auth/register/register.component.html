@@ -8,7 +8,7 @@
 					</div>
 				</div>
 				<div class="alert alert-success" role="alert" [hidden]="!showSuccess">
-					Confirmation Email have been sent to you
+					You have successfully registered!
 				</div>
 				<div class="alert alert-danger" role="alert" [hidden]="!showError">
 					<p *ngFor="let error of errors">{{ error }}</p>
@@ -36,7 +36,20 @@
 						placeholder="Password"
 					/>
 				</div>
-				<button type="submit" [disabled]="!form.valid" class="btn btn-primary">Register</button>
+				<div class="row">
+					<div class="col-12">
+						<button type="submit" id="registerBtn" [disabled]="!form.valid" class="btn btn-info">
+							Register
+						</button>
+					</div>
+				</div>
+				<div class="row text-center">
+					<div class="col-12">
+						<a class="stretched-link" [routerLink]="['/login']" routerLinkActive="router-link-active"
+							>Already have an account? Sign in</a
+						>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>

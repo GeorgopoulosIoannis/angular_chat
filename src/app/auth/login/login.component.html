@@ -8,7 +8,7 @@
 					</div>
 				</div>
 				<div class="alert alert-danger" role="alert" [hidden]="!showAlert">
-					Invalid Credentials
+					Username or Password is incorrect
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
@@ -34,8 +34,30 @@
 					/>
 				</div>
 				<div class="row">
-					<button type="submit" [disabled]="!form.valid" class="btn btn-info ml-3">Submit</button>
-					<a class="ml-auto mr-4" routerLinkActive="router-link-active"> Forgot Password</a>
+					<div class="col-12">
+						<a
+							id="forgotPass"
+							class="ml-auto stretched-link"
+							[routerLink]="['/forgotpassword']"
+							routerLinkActive="router-link-active"
+							>Forgot Password</a
+						>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12">
+						<button type="submit" id="lgnBtn" [disabled]="!form.valid" class="btn btn-info">
+							Submit
+						</button>
+					</div>
+				</div>
+				<div class="row text-center">
+					<div class="col-12">
+						<a class="stretched-link" [routerLink]="['/register']" routerLinkActive="router-link-active"
+							>Not a member? Sign Up</a
+						>
+					</div>
 				</div>
 			</form>
 		</div>

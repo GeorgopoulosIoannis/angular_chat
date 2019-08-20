@@ -22,6 +22,6 @@ export class ChatBoxMessageHistoryComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit(): void {
 		setTimeout(() => {
 			this.shared.updateScroll();
-		}, 100);
+		}, 200);
 	}
 }

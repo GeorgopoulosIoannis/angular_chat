@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
-	<a class="navbar-brand" [routerLink]="['/friends']" routerLinkActive="router-link-active"><b>My Chat</b></a>
+	<a class="navbar-brand" [routerLink]="['/friends']"><b>My Chat</b></a>
 	<button
 		(click)="isCollapsed = !isCollapsed"
 		class="navbar-toggler"
@@ -15,18 +15,21 @@
 	<div class="collapse navbar-collapse" [collapse]="isCollapsed" id="navbarNavDropdown">
 		<ul class="navbar-nav">
 			<li class="nav-item active">
-				<a
-					class="nav-link fas fa-user-friends"
-					[routerLink]="['/friends']"
-					routerLinkActive="router-link-active"
-				>
+				<a class="nav-link fas fa-user-friends" [routerLink]="['/friends']" routerLinkActive="active-link">
 					Friends <span class="sr-only">(current)</span></a
 				>
 			</li>
 			<li class="nav-item active">
-				<a class="nav-link fas fa-comments" [routerLink]="['/convos']" routerLinkActive="router-link-active">
-					Conversations <span class="sr-only">(current)</span></a
+				<a
+					class="nav-link fas fa-comments"
+					[routerLink]="['/convos']"
+					routerLinkActive="active-link"
 				>
+					Unread Messages ( {{ unreadMessages.length }} ) <span class="sr-only">(current)</span></a
+				>
+			</li>
+			<li class="nav-item active" *ngIf="Authenticated()">
+				<a class="nav-link fas fa-sign-out-alt" (click)="logout()"> Logout </a>
 			</li>
 		</ul>
 	</div>
