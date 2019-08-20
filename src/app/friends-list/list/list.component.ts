@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
 	constructor(private shared: SharedService, private router: Router, private hub: HubService) {}
 
 	ngOnInit() {
+		debugger
 		this.hub.startNegotiation();
 
 		this.shared.connectionList.subscribe(data => {

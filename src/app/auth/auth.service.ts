@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { StorageService } from '../services/storage.service';
 import { environment } from 'src/environments/environment';
+import { TouchSequence } from 'selenium-webdriver';
+import { HubService } from '../services/hub.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +16,8 @@ export class AuthService {
 		private http: HttpClient,
 		private router: Router,
 		private jwtHelper: JwtHelperService,
-		private storage: StorageService
+		private storage: StorageService,
+		private hub: HubService
 	) {}
 	login(credentials): Observable<string> {
 		return this.http.post<string>(environment.api + 'api/user/login', credentials);
@@ -29,6 +32,7 @@ export class AuthService {
 	}
 	logout() {
 		localStorage.clear();
+		this.hub.stopConnection();
 		this.router.navigate(['/login']);
 	}
 

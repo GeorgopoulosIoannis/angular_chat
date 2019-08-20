@@ -13,10 +13,12 @@ export class TopBarComponent implements OnInit {
 	constructor(private auth: AuthService, private shared: SharedService) {}
 
 	ngOnInit() {
-		this.shared.getUnreadMessages().subscribe(messages => {
-			this.unreadMessages = messages;
-			console.log('unread:' + this.unreadMessages);
-		});
+		if (this.auth.isAuthenticated()) {
+			this.shared.getUnreadMessages().subscribe(messages => {
+				this.unreadMessages = messages;
+				console.log('unread:' + this.unreadMessages);
+			});
+		}
 	}
 
 	Authenticated() {

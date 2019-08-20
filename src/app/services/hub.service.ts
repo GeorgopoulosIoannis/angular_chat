@@ -34,6 +34,9 @@ export class HubService {
 			this.startConnection();
 		}
 	}
+	stopConnection() {
+		this.hubConnection.stop();
+	}
 	private createConnection() {
 		this.hubConnection = new HubConnectionBuilder()
 			.withUrl(environment.api + 'chat/?access_token=' + this.getAccessToken())
