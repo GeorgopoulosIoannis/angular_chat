@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { Tab } from 'src/app/Models/tab';
 import { Router } from '@angular/router';
 import { ChatMessage } from 'src/app/Models/chat-message';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
 	selector: 'chat-conversations-list',
@@ -10,19 +11,15 @@ import { ChatMessage } from 'src/app/Models/chat-message';
 	styleUrls: ['./conversations-list.component.scss']
 })
 export class ConversationsListComponent implements OnInit {
-	unreadMessages: any;
+	unreadMessages = [];
 	constructor(private shared: SharedService, private router: Router) {}
 
 	ngOnInit() {
-		this.unreadMessages = [];
-
-		this.shared.getUnreadMessages().subscribe(messages => {
+		this.shared.emitUnread();
+		this.shared.unreadMessages.subscribe(messages => {
 			this.unreadMessages = messages;
+			console.log('unread from conv list onInit:' + this.unreadMessages);
 		});
-
-		// this.shared.curTabList.subscribe(data => {
-		// 	this.tabList = data;
-		// });
 	}
 
 	switchTab(email) {

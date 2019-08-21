@@ -7,6 +7,7 @@ import { StorageService } from '../services/storage.service';
 import { environment } from 'src/environments/environment';
 import { TouchSequence } from 'selenium-webdriver';
 import { HubService } from '../services/hub.service';
+import { SharedService } from '../services/shared.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
 		private router: Router,
 		private jwtHelper: JwtHelperService,
 		private storage: StorageService,
-		private hub: HubService
+		private hub: HubService,
+		private shared: SharedService
 	) {}
 	login(credentials): Observable<string> {
 		return this.http.post<string>(environment.api + 'api/user/login', credentials);

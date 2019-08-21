@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HubService } from './hub.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Tab } from '../Models/tab';
@@ -14,8 +14,6 @@ export class SharedService {
 	tabs: Tab[];
 	list = [];
 	connectionEstablished = false;
-
-	unreadMessages: [ChatMessage];
 
 	constructor(private hub: HubService, private http: HttpClient) {
 		this.init();
@@ -33,6 +31,8 @@ export class SharedService {
 	private onlineConnectionListSource = new BehaviorSubject([]);
 	onlineConnectionList = this.onlineConnectionListSource.asObservable();
 
+	unreadMessages = new EventEmitter<ChatMessage[]>();
+
 	changeTab(tab: Tab) {
 		tab.isActive = true;
 		this.getTabHistory(tab.username).subscribe(res => {
@@ -49,6 +49,12 @@ export class SharedService {
 	getUnreadMessages(): Observable<[ChatMessage]> {
 		return this.http.get<[ChatMessage]>(environment.api + 'api/messages/unread');
 	}
+
+	emitUnread() {
+		this.getUnreadMessages().subscribe(res => {
+			this.unreadMessages.emit(res);
+		});
+	}
 	changeTabByEmail(email: string) {
 		for (let tab of this.tabs) {
 			if (tab.username === email) {
@@ -63,10 +69,14 @@ export class SharedService {
 		this.hub.messageReceived.subscribe((message: ChatMessage) => {
 			let tab = this.findOrCreateTab(message.from);
 			this.pushMessageToTab(tab, message);
-			if (!tab.isActive) {
-				message.unread = true;
-			} else {
+			if (tab.isActive) {
+				message.unread = false;
+				this.readMessage(message).subscribe(res => {
+					console.log(res);
+				});
 				setTimeout(() => this.updateScroll(), 0);
+			} else {
+				this.emitUnread();
 			}
 			console.log(tab);
 		});
@@ -74,10 +84,13 @@ export class SharedService {
 		this.hub.connectionsList.subscribe(data => {
 			this.connectionListSource.next(data);
 		});
-
 		this.hub.onlineConnectionsList.subscribe(data => {
 			this.onlineConnectionListSource.next(data);
 		});
+	}
+
+	readMessage(message) {
+		return this.http.post<any>(environment.api + 'api/messages/confirm', message);
 	}
 
 	addTabToList(tab: Tab) {
@@ -118,5 +131,9 @@ export class SharedService {
 
 	pushMessageToTab(tab: Tab, message: ChatMessage) {
 		tab.messageHistory.push(message);
+	}
+
+	ConfirmMessages(curTab: Tab) {
+		return this.http.post<any>(environment.api + 'api/messages/confirm', curTab);
 	}
 }

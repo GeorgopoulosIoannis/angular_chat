@@ -8,17 +8,10 @@ import { SharedService } from 'src/app/services/shared.service';
 	styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-	unreadMessages = [];
 	isCollapsed = true;
 	constructor(private auth: AuthService, private shared: SharedService) {}
 
 	ngOnInit() {
-		if (this.auth.isAuthenticated()) {
-			this.shared.getUnreadMessages().subscribe(messages => {
-				this.unreadMessages = messages;
-				console.log('unread:' + this.unreadMessages);
-			});
-		}
 	}
 
 	Authenticated() {

@@ -48,6 +48,7 @@ export class HubService {
 			.start()
 			.then(() => {
 				console.log('Hub connection started');
+
 				this.connected = true;
 			})
 			.catch(err => {
