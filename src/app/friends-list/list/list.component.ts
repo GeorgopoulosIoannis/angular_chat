@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { Router } from '@angular/router';
 import { Tab } from 'src/app/Models/tab';
 import { HubService } from 'src/app/services/hub.service';
+import { RelationshipsService } from 'src/app/services/relationships.service';
 
 @Component({
 	selector: 'chat-list',
@@ -10,35 +11,19 @@ import { HubService } from 'src/app/services/hub.service';
 	styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-	list = [];
+	friends = [];
 	onlineList = [];
 	tabList: Tab[];
-	constructor(private shared: SharedService, private router: Router, private hub: HubService) {}
+	constructor(
+		private rel: RelationshipsService,
+		private shared: SharedService,
+		private router: Router,
+		private hub: HubService
+	) {}
 
 	ngOnInit() {
-		this.hub.startNegotiation();
-
-		this.shared.connectionList.subscribe(data => {
-			this.list = data;
+		this.rel.getRelationships('0').subscribe(res => {
+			this.friends = res;
 		});
-		this.shared.onlineConnectionList.subscribe(data => {
-			this.onlineList = data;
-		});
-		this.shared.curTabList.subscribe(data => {
-			this.tabList = data;
-		});
-	}
-
-	switchTab(email) {
-		this.shared.changeTab(this.shared.findOrCreateTab(email));
-		this.router.navigate(['/chatbox']);
-	}
-
-	addOnlineMark(email) {
-		if (this.onlineList.includes(email)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 }

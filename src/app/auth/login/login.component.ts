@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 		this.auth.login(credentials).subscribe(
 			jwt => {
 				this.auth.authenticate(jwt);
-				this.shared.setMe(credentials.email);
 				this.router.navigate(['']);
 			},
 			error => {

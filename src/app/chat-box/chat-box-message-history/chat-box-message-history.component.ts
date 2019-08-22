@@ -11,7 +11,7 @@ import { StorageService } from 'src/app/services/storage.service';
 	templateUrl: './chat-box-message-history.component.html',
 	styleUrls: ['./chat-box-message-history.component.scss']
 })
-export class ChatBoxMessageHistoryComponent implements OnInit, AfterViewInit {
+export class ChatBoxMessageHistoryComponent implements OnInit {
 	email;
 	@Input() curTab: Tab;
 	constructor(private hub: HubService, private shared: SharedService, private storage: StorageService) {}
@@ -19,7 +19,5 @@ export class ChatBoxMessageHistoryComponent implements OnInit, AfterViewInit {
 	ngOnInit() {
 		this.email = this.storage.get('me');
 	}
-	ngAfterViewInit(): void {
 
-	}
 }
