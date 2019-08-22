@@ -3,7 +3,16 @@
 $fa-font-path: '~@fortawesome/fontawesome-free-webfonts/webfonts';
 @import '~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss';
+
 @import '~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss';
+
+@import '~ngx-toastr/toastr';
+
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+@import '~ngx-toastr/toastr-bs4-alert';
+
 body {
 	font-family: Roboto, Helvetica, Arial, sans-serif;
 	font-variant-ligatures: none;
@@ -13,7 +22,19 @@ html {
 	font-size: 16px;
 }
 
-html,
-body {
-	height: 100%;
+
+
+.content{
+	height:71vh;
+	overflow-x: scroll;
+
 }
+
+@media(min-width: 1025px){
+	.content{
+		height:80vh;
+		overflow-x:scroll;
+
+	}
+}
+

@@ -10,6 +10,7 @@ import { ListComponent } from './friends-list/list/list.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CurrentTabGuard } from './guards/current-tab.guard';
 import { ConversationsListComponent } from './conversations/conversations-list/conversations-list.component';
+import { ProfileLayoutComponent } from './profile/profile-layout/profile-layout.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
 	{ path: 'chatbox', component: ChatBoxLayoutComponent, canActivate: [CurrentTabGuard] },
 	{ path: 'friends', component: ListComponent, canActivate: [AuthGuard] },
 	{ path: 'convos', component: ConversationsListComponent, canActivate: [AuthGuard] },
+	{ path: 'profile', component: ProfileLayoutComponent },
 	{ path: '', component: ListComponent, canActivate: [AuthGuard] },
 	{ path: '*', component: ListComponent, canActivate: [AuthGuard] }
 ];

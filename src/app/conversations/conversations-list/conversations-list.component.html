@@ -14,7 +14,9 @@
 					*ngFor="let message of unreadMessages"
 					(click)="switchTab(message.from)"
 				>
-					{{ message.from }}
+					<h4>{{ message.from }}</h4>
+					<p>{{ message.message }}</p>
+					<cite>{{ message.timeStamp }}</cite>
 					<span class="badge badge-light">New unread messages</span>
 				</button>
 			</div>

@@ -5,6 +5,7 @@ import { Tab } from '../Models/tab';
 import { ChatMessage } from '../Models/chat-message';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
 	providedIn: 'root'

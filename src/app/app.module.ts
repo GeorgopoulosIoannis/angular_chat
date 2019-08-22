@@ -8,6 +8,10 @@ import { SharedModule } from './shared/shared.module';
 import { FriendsListModule } from './friends-list/friends-list.module';
 import { MainScreenModule } from './main-screen/main-screen.module';
 import { ConversationsModule } from './conversations/conversations.module';
+import { ProfileModule } from './profile/profile.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -18,7 +22,10 @@ import { ConversationsModule } from './conversations/conversations.module';
 		SharedModule,
 		FriendsListModule,
 		MainScreenModule,
-		ConversationsModule
+		ConversationsModule,
+		ProfileModule,
+		BrowserAnimationsModule,
+		ToastrModule.forRoot()
 	],
 	bootstrap: [AppComponent]
 })
