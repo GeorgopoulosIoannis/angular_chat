@@ -1,5 +1,5 @@
 <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-info" id="myHeader">
-	<a class="navbar-brand" [routerLink]="['/profile']"><b>My Chat</b></a>
+	<a class="navbar-brand" (click)="isCollapsed = true" [routerLink]="['/profile']"><b>My Chat</b></a>
 	<button
 		(click)="isCollapsed = !isCollapsed"
 		class="navbar-toggler"

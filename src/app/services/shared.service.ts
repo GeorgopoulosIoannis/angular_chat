@@ -6,6 +6,7 @@ import { ChatMessage } from '../Models/chat-message';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,7 +17,12 @@ export class SharedService {
 	list = [];
 	connectionEstablished = false;
 
-	constructor(private hub: HubService, private http: HttpClient) {
+	constructor(
+		private hub: HubService,
+		private http: HttpClient,
+		private toastr: ToastrService,
+		private router: Router
+	) {
 		this.init();
 	}
 
@@ -38,6 +44,9 @@ export class SharedService {
 		tab.isActive = true;
 		this.getTabHistory(tab.username).subscribe(res => {
 			tab.messageHistory = res;
+			setTimeout(() => {
+				this.updateScroll();
+			}, 0);
 		});
 		this.tabSource.next(tab);
 	}
@@ -77,6 +86,7 @@ export class SharedService {
 				});
 				setTimeout(() => this.updateScroll(), 0);
 			} else {
+				this.showInfo(message.from);
 				this.emitUnread();
 			}
 			console.log(tab);
@@ -136,5 +146,17 @@ export class SharedService {
 
 	ConfirmMessages(curTab: Tab) {
 		return this.http.post<any>(environment.api + 'api/messages/confirm', curTab);
+	}
+
+	showInfo(email) {
+		var msg = email;
+		this.toastr.info(email, 'New message from').onTap.subscribe(() => {
+			this.toasterClickedHandler(msg);
+		});
+	}
+
+	toasterClickedHandler(email) {
+		this.changeTab(this.findOrCreateTab(email));
+		this.router.navigate(['/chatbox']);
 	}
 }
