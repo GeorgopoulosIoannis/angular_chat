@@ -24,8 +24,23 @@
 					Unread Messages <span class="sr-only">(current)</span></a
 				>
 			</li>
+			<li class="nav-item active">
+				<a class="nav-link fas fa-search" *ngIf="Authenticated()" [routerLink]="['/users']" routerLinkActive="active-link">
+					Search.. <span class="sr-only">(current)</span></a
+				>
+			</li>
 			<li class="nav-item active" *ngIf="Authenticated()">
 				<a class="nav-link fas fa-sign-out-alt" (click)="logout()"> Logout </a>
+			</li>
+			<li class="nav-item active" *ngIf="!Authenticated()">
+				<a class="nav-link fas fa-sign-in-alt" [routerLink]="['/convos']" routerLinkActive="active-link">
+					Login <span class="sr-only">(current)</span></a
+				>
+			</li>
+			<li class="nav-item active" *ngIf="!Authenticated()">
+				<a class="nav-link fas fa-edit" [routerLink]="['/convos']" routerLinkActive="active-link">
+					Register <span class="sr-only">(current)</span></a
+				>
 			</li>
 		</ul>
 	</div>

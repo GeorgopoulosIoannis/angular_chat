@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { StorageService } from '../services/storage.service';
 import { environment } from 'src/environments/environment';
-import { TouchSequence } from 'selenium-webdriver';
 import { HubService } from '../services/hub.service';
 import { SharedService } from '../services/shared.service';
 

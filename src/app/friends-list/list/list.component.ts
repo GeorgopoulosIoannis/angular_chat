@@ -22,8 +22,26 @@ export class ListComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		this.hub.startNegotiation();
 		this.rel.getRelationships('0').subscribe(res => {
 			this.friends = res;
+			console.log(res);
 		});
+		this.shared.onlineConnectionList.subscribe(res => {
+			this.onlineList = res;
+			console.log(res);
+		});
+	}
+	switchTab(email) {
+		this.shared.changeTab(this.shared.findOrCreateTab(email));
+		this.router.navigate(['/chatbox']);
+	}
+
+	addOnlineMark(email) {
+		if (this.onlineList.includes(email)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

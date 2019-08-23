@@ -18,7 +18,6 @@ export class ConversationsListComponent implements OnInit {
 		this.shared.emitUnread();
 		this.shared.unreadMessages.subscribe(messages => {
 			this.unreadMessages = messages;
-			console.log('unread from conv list onInit:' + this.unreadMessages);
 		});
 	}
 

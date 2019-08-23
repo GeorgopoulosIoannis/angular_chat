@@ -141,6 +141,14 @@ export class SharedService {
 			this.toasterClickedHandler(msg);
 		});
 	}
+	/***************************Toaster Notification for successfull user interactions ******************/
+	showSuccess(message) {
+		this.toastr.success(message);
+	}
+	/**************************Toaster Notification for errors ******************/
+	showFailure(message){
+		this.toastr.error(message);
+	}
 
 	/******************** redirect to chat when toaster is clicked *********************/
 	toasterClickedHandler(email) {

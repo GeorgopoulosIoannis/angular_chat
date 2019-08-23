@@ -3,6 +3,7 @@ import { Tab } from 'src/app/Models/tab';
 import { SharedService } from 'src/app/services/shared.service';
 import { Router } from '@angular/router';
 import { HubService } from 'src/app/services/hub.service';
+import { RelationshipsService } from 'src/app/services/relationships.service';
 
 @Component({
 	selector: 'chat-all-users-list',
@@ -13,7 +14,12 @@ export class AllUsersListComponent implements OnInit {
 	list = [];
 	onlineList = [];
 	tabList: Tab[];
-	constructor(private shared: SharedService, private router: Router, private hub: HubService) {}
+	constructor(
+		private shared: SharedService,
+		private router: Router,
+		private hub: HubService,
+		private friendService: RelationshipsService
+	) {}
 
 	ngOnInit() {
 		this.hub.startNegotiation();
@@ -34,11 +40,14 @@ export class AllUsersListComponent implements OnInit {
 		this.router.navigate(['/chatbox']);
 	}
 
-	addOnlineMark(email) {
-		if (this.onlineList.includes(email)) {
-			return true;
-		} else {
-			return false;
-		}
+	inviteFriend(email) {
+		this.friendService.inviteFriend(email).subscribe(
+			res => {
+				this.shared.showSuccess('Invitation send successfully');
+			},
+			err => {
+				this.shared.showFailure('Already invited');
+			}
+		);
 	}
 }

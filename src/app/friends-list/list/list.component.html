@@ -1,21 +1,21 @@
-<div class="row">
-	<div class="col-12 text-center">
-		<h1>Friends List</h1>
+<div *ngIf="friends.length > 0; else empty">
+	<div class="row">
+		<div class="col-12 text-center">
+			<h1>Friends List</h1>
+		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="col-12">
-		<div class="list-group  justify-content-between">
-			<div *ngIf="list.length > 0">
+	<div class="row">
+		<div class="col-12">
+			<div class="list-group  justify-content-between">
 				<button
 					type="button"
 					class="list-group-item list-group-item-action btn btn-outline-success mt-1 mb-2"
-					*ngFor="let email of list"
-					(click)="switchTab(email)"
+					*ngFor="let friend of friends"
+					(click)="switchTab(friend.email)"
 				>
-					{{ email }}
-					<div class="d-inline-block" *ngIf="addOnlineMark(email); else offline">
+					{{ friend.email }}
+					<div class="d-inline-block" *ngIf="addOnlineMark(friend.email); else offline">
 						<img src="assets/online.ico" alt="" />
 					</div>
 				</button>
@@ -26,5 +26,12 @@
 <ng-template #offline>
 	<div class="d-inline-block">
 		<img src="assets/offline.ico" alt="" />
+	</div>
+</ng-template>
+<ng-template #empty>
+	<div class="row">
+		<div class="col-12 text-center">
+			<h1>No friends yet</h1>
+		</div>
 	</div>
 </ng-template>

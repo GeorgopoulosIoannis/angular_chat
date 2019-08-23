@@ -1,30 +1,41 @@
 <div class="row">
 	<div class="col-12 text-center">
-		<h1>Friends List</h1>
+		<h1>Find new friends</h1>
 	</div>
 </div>
-
 <div class="row">
 	<div class="col-12">
-		<div class="list-group  justify-content-between">
+		<ul class="list-group list-group-flush">
 			<div *ngIf="list.length > 0">
-				<button
-					type="button"
-					class="list-group-item list-group-item-action btn btn-outline-success mt-1 mb-2"
+				<li
+					class="list-group-item m-3 d-flex justify-content-between align-items-top"
 					*ngFor="let email of list"
-					(click)="switchTab(email)"
 				>
-					{{ email }}
-					<div class="d-inline-block" *ngIf="addOnlineMark(email); else offline">
-						<img src="assets/online.ico" alt="" />
+					<div class="row">
+						<div class="col-5">
+							<img src="assets/facebook.jpeg" alt="" />
+						</div>
+						<div class="col-7">
+							<div class="row">
+								<div class="col-10 offset-2">
+									<p>
+										<b>{{ email }}</b>
+									</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-4 offset-8">
+									<button
+										type="button"
+										class="btn btn-outline-primary fas fa-user-plus mt-4"
+										(click)="inviteFriend(email)"
+									></button>
+								</div>
+							</div>
+						</div>
 					</div>
-				</button>
+				</li>
 			</div>
-		</div>
+		</ul>
 	</div>
 </div>
-<ng-template #offline>
-	<div class="d-inline-block">
-		<img src="assets/offline.ico" alt="" />
-	</div>
-</ng-template>
