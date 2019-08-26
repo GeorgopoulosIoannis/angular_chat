@@ -3,28 +3,27 @@
 		<h1>Find new friends</h1>
 	</div>
 </div>
-<div class="row">
-	<div class="col-12">
-		<ul class="list-group list-group-flush">
-			<div *ngIf="list.length > 0">
-				<li
-					class="list-group-item m-3 d-flex justify-content-between align-items-top"
-					*ngFor="let email of list"
-				>
-					<div class="row">
-						<div class="col-5">
-							<img src="assets/facebook.jpeg" alt="" />
-						</div>
-						<div class="col-7">
-							<div class="row">
-								<div class="col-10 offset-2">
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<ul class="list-group list-group-flush d-inline-flex">
+				<div *ngIf="list.length > 0">
+					<li
+						class="list-group-item m-3 d-flex justify-content-between align-items-top"
+						*ngFor="let email of list"
+					>
+						<div class="row">
+							<div class="col-5">
+								<img src="assets/facebook.jpeg" alt="" />
+							</div>
+							<div class="col-7">
+								<div class="col-0 offset-3 overflow-hidden">
 									<p>
 										<b>{{ email }}</b>
 									</p>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-4 offset-8">
+
+								<div class="col-2 offset-4">
 									<button
 										type="button"
 										class="btn btn-outline-primary fas fa-user-plus mt-4"
@@ -33,9 +32,9 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</li>
-			</div>
-		</ul>
+					</li>
+				</div>
+			</ul>
+		</div>
 	</div>
 </div>
