@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RelationshipsService } from 'src/app/services/relationships.service';
 import { SharedService } from 'src/app/services/shared.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'chat-friend-requests-list',
@@ -9,11 +10,13 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class FriendRequestsListComponent implements OnInit {
 	requests = [];
-
+	base = environment.api;
 	constructor(private rels: RelationshipsService, private shared: SharedService) {}
 
 	ngOnInit() {
 		this.rels.getRelationships('0').subscribe(res => {
+			console.log('friend requests');
+			console.log(res);
 			this.requests = res;
 		});
 	}

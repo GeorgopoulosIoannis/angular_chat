@@ -11,7 +11,7 @@
 		</p>
 	</div>
 	<ul class="list-group list-group-flush" *ngIf="!IsMe()">
-		<li class="list-group-item">Add Friend</li>
+		<li class="list-group-item" (click)="Invite()">Add Friend</li>
 		<li class="list-group-item">Block</li>
 	</ul>
 </div>

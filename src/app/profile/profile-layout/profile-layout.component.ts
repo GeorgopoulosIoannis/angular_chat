@@ -5,6 +5,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { Profile } from 'src/app/Models/profile';
 import { environment } from 'src/environments/environment';
 import { TouchSequence } from 'selenium-webdriver';
+import { RelationshipsService } from 'src/app/services/relationships.service';
 
 @Component({
 	selector: 'chat-profile-layout',
@@ -19,7 +20,8 @@ export class ProfileLayoutComponent implements OnInit {
 	constructor(
 		private activatedRouter: ActivatedRoute,
 		private profileService: ProfileService,
-		private storage: StorageService
+		private storage: StorageService,
+		private relService: RelationshipsService
 	) {}
 
 	ngOnInit() {
@@ -34,7 +36,7 @@ export class ProfileLayoutComponent implements OnInit {
 	}
 
 	IsMe() {
-		return (this.me = this.userEmail);
+		return this.me === this.userEmail;
 	}
 
 	updateImage(path) {
@@ -42,6 +44,13 @@ export class ProfileLayoutComponent implements OnInit {
 		this.profileService.updateProfile(this.profile).subscribe(res => {
 			this.profile.avatar = path.dbPath;
 			location.reload();
+		});
+	}
+
+	Invite() {
+		debugger
+		this.relService.inviteFriend(this.userEmail).subscribe(res => {
+			console.log(res);
 		});
 	}
 }
