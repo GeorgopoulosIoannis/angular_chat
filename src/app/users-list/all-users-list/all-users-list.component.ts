@@ -45,8 +45,6 @@ export class AllUsersListComponent implements OnInit {
 		});
 	}
 
-	convertAvatar(){
-	}
 
 	switchTab(email) {
 		this.shared.changeTab(this.shared.findOrCreateTab(email));
