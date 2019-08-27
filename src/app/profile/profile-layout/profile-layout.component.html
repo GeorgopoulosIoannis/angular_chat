@@ -1,18 +1,17 @@
 <div class="card" style="width: 18rem;">
-	<img class="card-img-top" src="assets/facebook.jpeg" alt="Card image cap" />
+	<img class="card-img-top" src="{{ avatar }}" alt="Card image cap" />
+	<div class="row">
+		<div class="col-12 text-right"><app-upload (onUploadFinished)="updateImage($event)"></app-upload></div>
+	</div>
+
 	<div class="card-body">
-		<h5 class="card-title">{{ me }}</h5>
+		<h5 class="card-title">{{ profile.alias }}</h5>
 		<p class="card-text">
-			Enter a short description of yourself...
+			{{ profile.description }}
 		</p>
 	</div>
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item">Cras justo odio</li>
-		<li class="list-group-item">Dapibus ac facilisis in</li>
-		<li class="list-group-item">Vestibulum at eros</li>
+	<ul class="list-group list-group-flush" *ngIf="!IsMe()">
+		<li class="list-group-item">Add Friend</li>
+		<li class="list-group-item">Block</li>
 	</ul>
-	<div class="card-body">
-		<a href="#" class="card-link">Card link</a>
-		<a href="#" class="card-link">Another link</a>
-	</div>
 </div>

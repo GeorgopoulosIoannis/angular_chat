@@ -5,8 +5,8 @@ import { Tab } from '../Models/tab';
 import { ChatMessage } from '../Models/chat-message';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
 	providedIn: 'root'
@@ -68,6 +68,8 @@ export class SharedService {
 		});
 		/************** Subscribe to online connections list on hub which gets updated every time a user log in ***/
 		this.hub.onlineConnectionsList.subscribe(data => {
+			console.log('New online connections :');
+			console.log(data);
 			this.onlineConnectionListSource.next(data);
 		});
 	}
@@ -134,9 +136,10 @@ export class SharedService {
 	pushMessageToTab(tab: Tab, message: ChatMessage) {
 		tab.messageHistory.push(message);
 	}
-	/********************* Toaster notification when message arrives ***********************/
+
+	/******************** Toaster Notification for new messages **********************************/
 	showInfo(email) {
-		var msg = email;
+		let msg = email;
 		this.toastr.info(email, 'New message from').onTap.subscribe(() => {
 			this.toasterClickedHandler(msg);
 		});
@@ -146,7 +149,7 @@ export class SharedService {
 		this.toastr.success(message);
 	}
 	/**************************Toaster Notification for errors ******************/
-	showFailure(message){
+	showFailure(message) {
 		this.toastr.error(message);
 	}
 

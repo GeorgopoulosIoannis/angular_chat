@@ -4,15 +4,18 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import * as signalR from '@aspnet/signalr';
 import { SharedService } from './shared.service';
 import { environment } from 'src/environments/environment';
+import { Profile } from '../Models/profile';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class HubService {
 	connected = false;
+
 	messageReceived = new EventEmitter<ChatMessage>();
 	connectionsList = new EventEmitter<[string]>();
 	onlineConnectionsList = new EventEmitter<[string]>();
+	friendsList = new EventEmitter<[Profile]>();
 
 	private hubConnection: HubConnection;
 

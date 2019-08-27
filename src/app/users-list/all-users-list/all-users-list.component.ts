@@ -4,6 +4,9 @@ import { SharedService } from 'src/app/services/shared.service';
 import { Router } from '@angular/router';
 import { HubService } from 'src/app/services/hub.service';
 import { RelationshipsService } from 'src/app/services/relationships.service';
+import { ProfileService } from 'src/app/services/profile.service';
+
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'chat-all-users-list',
@@ -14,25 +17,35 @@ export class AllUsersListComponent implements OnInit {
 	list = [];
 	onlineList = [];
 	tabList: Tab[];
+	base = environment.api;
 	constructor(
 		private shared: SharedService,
 		private router: Router,
 		private hub: HubService,
-		private friendService: RelationshipsService
+		private relsService: RelationshipsService,
+		private profService: ProfileService
 	) {}
 
 	ngOnInit() {
 		this.hub.startNegotiation();
 
-		this.shared.connectionList.subscribe(data => {
-			this.list = data;
-		});
+		// this.shared.connectionList.subscribe(data => {
+		// 	this.list = data;
+		// 	console.log('connectionlist :');
+		// 	console.log(data);
+		// });
 		this.shared.onlineConnectionList.subscribe(data => {
 			this.onlineList = data;
 		});
 		this.shared.curTabList.subscribe(data => {
 			this.tabList = data;
 		});
+		this.profService.getSuggestions().subscribe(res => {
+			this.list = res;
+		});
+	}
+
+	convertAvatar(){
 	}
 
 	switchTab(email) {
@@ -41,7 +54,7 @@ export class AllUsersListComponent implements OnInit {
 	}
 
 	inviteFriend(email) {
-		this.friendService.inviteFriend(email).subscribe(
+		this.relsService.inviteFriend(email).subscribe(
 			res => {
 				this.shared.showSuccess('Invitation send successfully');
 			},

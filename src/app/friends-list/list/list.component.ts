@@ -23,13 +23,20 @@ export class ListComponent implements OnInit {
 
 	ngOnInit() {
 		this.hub.startNegotiation();
-		this.rel.getRelationships('0').subscribe(res => {
+		this.rel.getRelationships('1').subscribe(res => {
 			this.friends = res;
+			console.log('friends :');
 			console.log(res);
 		});
 		this.shared.onlineConnectionList.subscribe(res => {
 			this.onlineList = res;
+			console.log('online :');
 			console.log(res);
+		});
+		this.hub.friendsList.subscribe(res => {
+			console.log('Frined list component : ');
+			console.log(res);
+			this.onlineList.push(res);
 		});
 	}
 	switchTab(email) {

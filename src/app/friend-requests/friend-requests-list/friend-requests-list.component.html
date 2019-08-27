@@ -1,21 +1,22 @@
 <div class="row">
 	<div class="col-12 text-center">
-		<h1>Find new friends</h1>
+		<h1>Requests</h1>
 	</div>
 </div>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<ul class="list-group list-group-flush d-inline-flex">
-				<div *ngIf="list.length > 0">
+				<div *ngIf="requests.length > 0">
 					<li
 						class="list-group-item m-3 d-flex justify-content-between align-items-top"
-						*ngFor="let profile of list"
+						*ngFor="let profile of requests"
 					>
+						<span class="close" (click)="remove(profile)">x</span>
 						<div class="row">
 							<div class="col-5">
 								<a [routerLink]="['/profile', profile.email]" routerLinkActive="active-link">
-									<img src="profile.avatar" alt="" />
+									<img src="assets/facebook.jpeg" alt="" />
 								</a>
 							</div>
 							<div class="col-7">
@@ -26,11 +27,9 @@
 								</div>
 
 								<div class="col-2 offset-4">
-									<button
-										type="button"
-										class="btn btn-outline-primary fas fa-user-plus mt-4"
-										(click)="inviteFriend(profile.email)"
-									></button>
+									<button type="button" class="btn btn-outline-success fas fa-user-check mt-4" (click)="accept(profile)">
+										<p class="m-0">Accept</p>
+									</button>
 								</div>
 							</div>
 						</div>
