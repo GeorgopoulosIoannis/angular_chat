@@ -21,9 +21,9 @@ const routes: Routes = [
 	{ path: 'chatbox', component: ChatBoxLayoutComponent, canActivate: [CurrentTabGuard] },
 	{ path: 'friends', component: ListComponent, canActivate: [AuthGuard] },
 	{ path: 'requests', component: FriendRequestsListComponent, canActivate: [AuthGuard] },
-	{ path: 'users', component: AllUsersListComponent,canActivate: [AuthGuard] },
+	{ path: 'users', component: AllUsersListComponent, canActivate: [AuthGuard] },
 	{ path: 'convos', component: ConversationsListComponent, canActivate: [AuthGuard] },
-	{ path: 'profile/:email', component: ProfileLayoutComponent, canActivate: [AuthGuard]},
+	{ path: 'profile/:email', component: ProfileLayoutComponent, canActivate: [AuthGuard] },
 	{ path: '', component: ListComponent, canActivate: [AuthGuard] },
 	{ path: '*', component: ListComponent, canActivate: [AuthGuard] }
 ];
