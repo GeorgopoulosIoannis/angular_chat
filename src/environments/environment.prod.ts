@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'https://chathubapi20190829011556.azurewebsites.net/'
+  api: 'https://chathubapi20190829023618.azurewebsites.net/'
 };
