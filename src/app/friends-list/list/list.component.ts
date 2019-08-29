@@ -33,11 +33,11 @@ export class ListComponent implements OnInit {
 			console.log('online :');
 			console.log(res);
 		});
-		this.hub.friendsList.subscribe(res => {
-			console.log('Frined list component : ');
-			console.log(res);
-			this.onlineList.push(res);
-		});
+		// this.hub.friendsList.subscribe(res => {
+		// 	console.log('Frined list component : ');
+		// 	console.log(res);
+		// 	this.onlineList.push(res);
+		// });
 	}
 	switchTab(email) {
 		this.shared.changeTab(this.shared.findOrCreateTab(email));

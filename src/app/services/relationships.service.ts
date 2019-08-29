@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { FriendInvite } from '../Models/friend-invite';
 import { UpdateStatus } from '../Models/update-status';
 @Injectable({
@@ -23,5 +23,10 @@ export class RelationshipsService {
 	acceptFriend(emailOut): Observable<any> {
 		const body: UpdateStatus = { email: emailOut, status: 1 };
 		return this.http.post<any>(environment.api + 'api/friends/update', body);
+	}
+
+	block(emailOut): Observable<any> {
+		const body: FriendInvite = { email: emailOut, status: 3 };
+		return this.http.post<any>(environment.api + 'api/friends/add', body);
 	}
 }

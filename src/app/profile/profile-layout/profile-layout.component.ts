@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -6,6 +6,9 @@ import { Profile } from 'src/app/Models/profile';
 import { environment } from 'src/environments/environment';
 import { TouchSequence } from 'selenium-webdriver';
 import { RelationshipsService } from 'src/app/services/relationships.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
 	selector: 'chat-profile-layout',
@@ -17,12 +20,23 @@ export class ProfileLayoutComponent implements OnInit {
 	profile: Profile;
 	avatar: string;
 	me: string;
+	modalRef: BsModalRef;
+	form;
+
 	constructor(
 		private activatedRouter: ActivatedRoute,
 		private profileService: ProfileService,
 		private storage: StorageService,
-		private relService: RelationshipsService
-	) {}
+		private relService: RelationshipsService,
+		private modal: BsModalService,
+		private fb: FormBuilder,
+		private auth: AuthService
+	) {
+		this.form = fb.group({
+			alias: ['', Validators.required],
+			description: ['', Validators.required]
+		});
+	}
 
 	ngOnInit() {
 		this.activatedRouter.paramMap.subscribe(params => {
@@ -36,7 +50,7 @@ export class ProfileLayoutComponent implements OnInit {
 	}
 
 	IsMe() {
-		return this.me === this.userEmail;
+		return this.me === this.userEmail && this.auth.isAuthenticated();
 	}
 
 	updateImage(path) {
@@ -48,9 +62,22 @@ export class ProfileLayoutComponent implements OnInit {
 	}
 
 	Invite() {
-		debugger
 		this.relService.inviteFriend(this.userEmail).subscribe(res => {
 			console.log(res);
+		});
+	}
+	openModal(template: TemplateRef<any>) {
+		this.modalRef = this.modal.show(template);
+	}
+
+	SubmitChanges(values) {
+		this.profile.alias = values.alias;
+		this.profile.description = values.description;
+
+		this.profileService.updateProfile(this.profile).subscribe(res => {
+			console.log(values);
+			this.form.reset();
+			this.modalRef.hide();
 		});
 	}
 }

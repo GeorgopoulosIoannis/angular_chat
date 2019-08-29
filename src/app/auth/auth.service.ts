@@ -34,6 +34,7 @@ export class AuthService {
 	logout() {
 		localStorage.clear();
 		this.hub.stopConnection();
+		location.reload();
 		this.router.navigate(['/login']);
 	}
 

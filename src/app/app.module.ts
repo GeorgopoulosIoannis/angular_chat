@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UsersListModule } from './users-list/users-list.module';
 import { FriendRequestsModule } from './friend-requests/friend-requests.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -29,7 +30,9 @@ import { FriendRequestsModule } from './friend-requests/friend-requests.module';
 		BrowserAnimationsModule,
 		ToastrModule.forRoot(),
 		UsersListModule,
-		FriendRequestsModule
+		FriendRequestsModule,
+		ModalModule.forRoot()
+
 	],
 	bootstrap: [AppComponent]
 })

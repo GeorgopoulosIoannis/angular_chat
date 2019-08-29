@@ -18,23 +18,8 @@ body {
 	font-variant-ligatures: none;
 }
 
-html {
+html,body {
 	font-size: 16px;
-}
-
-
-
-.content{
-	height:71vh;
-	overflow-x: scroll;
-
-}
-
-@media(min-width: 1025px){
-	.content{
-		height:80vh;
-		overflow-x:scroll;
-
-	}
+	height:100%;
 }
 
