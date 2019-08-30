@@ -5,12 +5,6 @@
 		</div>
 	</div>
 
-	<div class="row ">
-		<div class="col-12 text-right mt-4">
-			<app-upload *ngIf="IsMe()" (onUploadFinished)="updateImage($event)"></app-upload>
-		</div>
-	</div>
-
 	<div class="card-body">
 		<h5 class="card-title">{{ profile.alias }}</h5>
 
@@ -18,9 +12,18 @@
 			{{ profile.description }}
 		</p>
 	</div>
-	<button class=" d-block ml-auto mr-1 btn btn-primary " *ngIf="IsMe()" (click)="openModal(template)">
-		Edit <i class="far fa-edit" aria-hidden="true"></i>
-	</button>
+	<div class="row ">
+		<div class="col-12">
+			<button class=" d-block ml-auto mr-1 mb-1 btn btn-primary " *ngIf="IsMe()" (click)="openModal(template)">
+				Edit <i class="far fa-edit" aria-hidden="true"></i>
+			</button>
+		</div>
+		<div class="col-12 ">
+			<app-upload *ngIf="IsMe()" (onUploadFinished)="addImage($event)"></app-upload>
+		</div>
+	</div>
+
+	<chat-image-grid [images]="images"></chat-image-grid>
 </div>
 <chat-visitor-options *ngIf="!IsMe()" [profile]="profile"></chat-visitor-options>
 <ng-template #template>

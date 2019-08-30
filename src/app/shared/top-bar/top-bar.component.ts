@@ -28,4 +28,5 @@ export class TopBarComponent implements OnInit {
 	goToProfile() {
 		this.router.navigate(['/profile', this.storage.get('me')]);
 	}
+
 }

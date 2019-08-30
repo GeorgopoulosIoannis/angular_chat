@@ -1,5 +1,11 @@
 <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-info" id="myHeader">
-	<a class="navbar-brand pl-4" (click)="isCollapsed = true" (click)="goToProfile()"><b id="header">My Chat</b></a>
+	<a
+		class="navbar-brand"
+		(click)="isCollapsed = true"
+		(click)="goToProfile()"
+	>
+		<img src="/assets/chat.png" width="80" height="60" class="d-inline-block align-top" alt="" />
+	</a>
 	<button
 		(click)="isCollapsed = !isCollapsed"
 		class="navbar-toggler"
@@ -14,35 +20,40 @@
 	</button>
 	<div class="collapse navbar-collapse p-2" [collapse]="isCollapsed" id="navbarNavDropdown">
 		<ul class="navbar-nav">
-				<li class="nav-item active" *ngIf="Authenticated()">
-						<a class="nav-link fas fa-user-friends" [routerLink]="['/friends']" routerLinkActive="active-link">
-							Friends list <span class="sr-only">(current)</span></a
-						>
-					</li>
-			<li class="nav-item active" *ngIf="Authenticated()">
+			<li class="nav-item active"	(click)="isCollapsed = true" *ngIf="Authenticated()">
+				<a class="nav-link fas fa-user-friends" [routerLink]="['/friends']" routerLinkActive="active-link">
+					Friends list <span class="sr-only">(current)</span></a
+				>
+			</li>
+			<li class="nav-item active"(click)="isCollapsed = true" *ngIf="Authenticated()">
 				<a class="nav-link fas fa-user-plus" [routerLink]="['/requests']" routerLinkActive="active-link">
 					Friend Requests <span class="sr-only">(current)</span></a
 				>
 			</li>
-			<li class="nav-item active" *ngIf="Authenticated()">
+			<li class="nav-item active"(click)="isCollapsed = true" *ngIf="Authenticated()">
 				<a class="nav-link fas fa-comments" [routerLink]="['/convos']" routerLinkActive="active-link">
 					Unread Messages <span class="sr-only">(current)</span></a
 				>
 			</li>
-			<li class="nav-item active">
-				<a class="nav-link fas fa-search" *ngIf="Authenticated()" [routerLink]="['/users']" routerLinkActive="active-link">
+			<li class="nav-item active"(click)="isCollapsed = true">
+				<a
+					class="nav-link fas fa-search"
+					*ngIf="Authenticated()"
+					[routerLink]="['/users']"
+					routerLinkActive="active-link"
+				>
 					Search.. <span class="sr-only">(current)</span></a
 				>
 			</li>
-			<li class="nav-item active" *ngIf="Authenticated()">
+			<li class="nav-item active" (click)="isCollapsed = true" *ngIf="Authenticated()">
 				<a class="nav-link fas fa-sign-out-alt" (click)="logout()"> Logout </a>
 			</li>
-			<li class="nav-item active" *ngIf="!Authenticated()">
+			<li class="nav-item active" (click)="isCollapsed = true" *ngIf="!Authenticated()">
 				<a class="nav-link fas fa-sign-in-alt" [routerLink]="['/login']" routerLinkActive="active-link">
 					Login <span class="sr-only">(current)</span></a
 				>
 			</li>
-			<li class="nav-item active" *ngIf="!Authenticated()">
+			<li class="nav-item active" (click)="isCollapsed = true" *ngIf="!Authenticated()">
 				<a class="nav-link fas fa-edit" [routerLink]="['/register']" routerLinkActive="active-link">
 					Register <span class="sr-only">(current)</span></a
 				>

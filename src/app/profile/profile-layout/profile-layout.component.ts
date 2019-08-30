@@ -9,6 +9,8 @@ import { RelationshipsService } from 'src/app/services/relationships.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ImageService } from 'src/app/services/image.service';
+import { Myimg } from 'src/app/Models/myimg';
 
 @Component({
 	selector: 'chat-profile-layout',
@@ -21,6 +23,7 @@ export class ProfileLayoutComponent implements OnInit {
 	avatar: string;
 	me: string;
 	modalRef: BsModalRef;
+	images = [];
 	form;
 
 	constructor(
@@ -30,7 +33,8 @@ export class ProfileLayoutComponent implements OnInit {
 		private relService: RelationshipsService,
 		private modal: BsModalService,
 		private fb: FormBuilder,
-		private auth: AuthService
+		private auth: AuthService,
+		private imageService: ImageService
 	) {
 		this.form = fb.group({
 			alias: ['', Validators.required],
@@ -45,6 +49,7 @@ export class ProfileLayoutComponent implements OnInit {
 				this.profile = res;
 				this.avatar = environment.api + res.avatar;
 			});
+			this.getImages();
 		});
 		this.me = this.storage.get('me');
 	}
@@ -61,6 +66,19 @@ export class ProfileLayoutComponent implements OnInit {
 		});
 	}
 
+	getImages() {
+		this.imageService.getProfileImages(this.userEmail).subscribe(res => {
+			this.images = res;
+			console.log(res);
+		});
+	}
+	addImage(path) {
+		const img = new Myimg(this.userEmail, path);
+		this.imageService.addImage(img).subscribe(res => {
+			console.log(res);
+			this.getImages();
+		});
+	}
 	Invite() {
 		this.relService.inviteFriend(this.userEmail).subscribe(res => {
 			console.log(res);
