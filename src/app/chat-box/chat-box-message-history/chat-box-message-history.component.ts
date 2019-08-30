@@ -19,5 +19,4 @@ export class ChatBoxMessageHistoryComponent implements OnInit {
 	ngOnInit() {
 		this.email = this.storage.get('me');
 	}
-
 }

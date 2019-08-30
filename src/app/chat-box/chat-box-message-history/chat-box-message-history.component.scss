@@ -1,12 +1,26 @@
 h3 {
 	text-align: center;
 }
+
 .box3 {
 	width: 300px;
 	border-radius: 15px;
 	background: #00bfb6;
 	color: #fff;
-	padding: 20px;
+	padding: 12px;
+	margin-top: 15px;
+	text-align: center;
+	font-weight: 900;
+	font-family: arial;
+	position: relative;
+	overflow-wrap: break-word;
+}
+.box4 {
+	width: 300px;
+	border-radius: 15px;
+	background: #00bfb6;
+	color: black;
+	padding: 12px;
 	margin-top: 15px;
 	text-align: center;
 	font-weight: 900;
@@ -60,3 +74,6 @@ h3 {
 	}
 }
 
+#historyBody {
+	font-size: 14px;
+}

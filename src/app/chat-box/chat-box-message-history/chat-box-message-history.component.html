@@ -1,16 +1,24 @@
 <div class="row">
-	<div class="col-12">
+	<div class="col-3">
+		<button
+			type="button"
+			class="btn btn-outline-secondary fas fa-long-arrow-alt-left"
+			[routerLink]="['/friends']"
+			routerLinkActive="router-link-active"
+		></button>
+	</div>
+	<div class="col-6">
 		<h3>{{ curTab.username }}</h3>
 	</div>
 </div>
 <div class="container-fluid content" id="historyBody">
 	<div class="row">
 		<div class="col-12">
-			<div *ngIf="curTab">
+			<div *ngIf="curTab.messageHistory.length > 0; else loader">
 				<div *ngFor="let message of curTab.messageHistory">
 					<div
 						[ngClass]="
-							message.from != email ? 'box3 sb14 col-4 offset-1 bg-secondary' : 'box3 sb13 col-4 offset-7'
+							message.from != email ? 'box3 sb14 col-7 offset-1 bg-secondary' : 'box4 sb13 col-7 offset-4'
 						"
 					>
 						{{ message.message }}
@@ -20,3 +28,9 @@
 		</div>
 	</div>
 </div>
+
+<ng-template #loader>
+	<div class="spinner-border text-primary" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</ng-template>

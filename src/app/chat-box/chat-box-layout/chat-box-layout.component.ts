@@ -15,6 +15,8 @@ export class ChatBoxLayoutComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.shared.curTab.subscribe(data => {
+			console.log('curtab');
+			console.log(this.curTab);
 			this.curTab = data;
 			this.curTab.unread = 0;
 		});

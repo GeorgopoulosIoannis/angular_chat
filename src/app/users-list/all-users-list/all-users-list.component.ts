@@ -29,11 +29,6 @@ export class AllUsersListComponent implements OnInit {
 	ngOnInit() {
 		this.hub.startNegotiation();
 
-		// this.shared.connectionList.subscribe(data => {
-		// 	this.list = data;
-		// 	console.log('connectionlist :');
-		// 	console.log(data);
-		// });
 		this.shared.onlineConnectionList.subscribe(data => {
 			this.onlineList = data;
 		});

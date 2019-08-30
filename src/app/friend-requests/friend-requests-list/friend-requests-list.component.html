@@ -1,45 +1,48 @@
 <div class="row">
 	<div class="col-12 text-center">
-		<h1>Requests</h1>
+		<div *ngIf="requests.length > 0; else Empty">
+			<h1>Requests</h1>
+		</div>
 	</div>
 </div>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<ul class="list-group list-group-flush d-inline-flex">
-				<div *ngIf="requests.length > 0">
-					<li
-						class="list-group-item m-3 d-flex justify-content-between align-items-top"
-						*ngFor="let profile of requests"
-					>
-						<span class="close" (click)="remove(profile)">x</span>
-						<div class="row">
-							<div class="col-5">
-								<a [routerLink]="['/profile', profile.email]" routerLinkActive="active-link">
-					 				<img src="{{ base }}{{ profile.avatar }}" alt="" />
-								</a>
+				<li
+					class="list-group-item m-3 d-flex justify-content-between align-items-top"
+					*ngFor="let profile of requests"
+				>
+					<span class="close" (click)="remove(profile)">x</span>
+					<div class="row">
+						<div class="col-5">
+							<a [routerLink]="['/profile', profile.email]" routerLinkActive="active-link">
+								<img src="{{ base }}{{ profile.avatar }}" alt="" />
+							</a>
+						</div>
+						<div class="col-7">
+							<div class="col-0 offset-3 overflow-hidden">
+								<p>
+									<b>{{ profile.email }}</b>
+								</p>
 							</div>
-							<div class="col-7">
-								<div class="col-0 offset-3 overflow-hidden">
-									<p>
-										<b>{{ profile.email }}</b>
-									</p>
-								</div>
 
-								<div class="col-2 offset-4">
-									<button
-										type="button"
-										class="btn btn-outline-success fas fa-user-check mt-4"
-										(click)="accept(profile)"
-									>
-										<p class="m-0">Accept</p>
-									</button>
-								</div>
+							<div class="col-2 offset-4">
+								<button
+									type="button"
+									class="btn btn-outline-success fas fa-user-check mt-4"
+									(click)="accept(profile)"
+								>
+									<p class="m-0">Accept</p>
+								</button>
 							</div>
 						</div>
-					</li>
-				</div>
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
 </div>
+<ng-template #Empty>
+	<h1 id="center">No new requests</h1>
+</ng-template>

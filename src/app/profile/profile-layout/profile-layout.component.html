@@ -4,8 +4,9 @@
 			<img class="card-img-top" src="{{ avatar }}" alt="Card image cap" />
 		</div>
 	</div>
+
 	<div class="row ">
-		<div class="col-12 text-right ">
+		<div class="col-12 text-right mt-4">
 			<app-upload *ngIf="IsMe()" (onUploadFinished)="updateImage($event)"></app-upload>
 		</div>
 	</div>
@@ -20,9 +21,8 @@
 	<button class=" d-block ml-auto mr-1 btn btn-primary " *ngIf="IsMe()" (click)="openModal(template)">
 		Edit <i class="far fa-edit" aria-hidden="true"></i>
 	</button>
-	<chat-visitor-options *ngIf="!IsMe()" [profile]="profile"></chat-visitor-options>
 </div>
-
+<chat-visitor-options *ngIf="!IsMe()" [profile]="profile"></chat-visitor-options>
 <ng-template #template>
 	<div class="modal-header">
 		<h4 class="modal-title pull-left">Edit Profile</h4>
