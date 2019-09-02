@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Tab } from 'src/app/Models/tab';
 import { HubService } from 'src/app/services/hub.service';
 import { RelationshipsService } from 'src/app/services/relationships.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'chat-list',
@@ -14,6 +15,7 @@ export class ListComponent implements OnInit {
 	friends = [];
 	onlineList = [];
 	tabList: Tab[];
+	base = environment.api;
 	constructor(
 		private rel: RelationshipsService,
 		private shared: SharedService,
@@ -33,11 +35,6 @@ export class ListComponent implements OnInit {
 			console.log('online :');
 			console.log(res);
 		});
-		// this.hub.friendsList.subscribe(res => {
-		// 	console.log('Frined list component : ');
-		// 	console.log(res);
-		// 	this.onlineList.push(res);
-		// });
 	}
 	switchTab(email) {
 		this.shared.changeTab(this.shared.findOrCreateTab(email));
@@ -51,4 +48,5 @@ export class ListComponent implements OnInit {
 			return false;
 		}
 	}
+
 }

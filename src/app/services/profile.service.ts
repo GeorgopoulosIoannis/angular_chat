@@ -8,7 +8,15 @@ import { Observable } from 'rxjs';
 	providedIn: 'root'
 })
 export class ProfileService {
+	profile: Profile;
 	constructor(private http: HttpClient) {}
+
+	setMemoryProfile(profile) {
+		this.profile = profile;
+	}
+	getMemoryProfile() {
+		return this.profile;
+	}
 
 	getProfile(email: string): Observable<Profile> {
 		const params = new HttpParams().set('email', email);

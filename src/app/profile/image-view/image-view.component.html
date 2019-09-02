@@ -1,0 +1,19 @@
+<div class="card">
+	<img src="{{ base }}{{ image.path }}" class="card-img-top" alt="..." (click)="tapEvent()" />
+	<div class="card-body">
+		<i class="fas fa-heart"></i> : {{ image.likesCount }} <br />
+		<i class="fas fa-comment"></i> : 20 <br /><br />
+		<div class="row">
+			<div class="col-10 text-center d-flex">
+				<input type="text" class="form-control" />
+			</div>
+			<div class="col-2">
+				<button
+					id="sendmessage"
+					class="btn btn-light pull-right shadow fas fa-comment"
+					[disabled]="!curMessage"
+				></button>
+			</div>
+		</div>
+	</div>
+</div>

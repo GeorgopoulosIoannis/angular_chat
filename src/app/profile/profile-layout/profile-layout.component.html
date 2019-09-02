@@ -22,7 +22,6 @@
 			<app-upload *ngIf="IsMe()" (onUploadFinished)="addImage($event)"></app-upload>
 		</div>
 	</div>
-
 	<chat-image-grid [images]="images"></chat-image-grid>
 </div>
 <chat-visitor-options *ngIf="!IsMe()" [profile]="profile"></chat-visitor-options>
@@ -35,7 +34,7 @@
 	</div>
 
 	<div class="modal-body">
-		<form [formGroup]="form" (submit)="SubmitChanges(form.value)">
+		<form [formGroup]="form" (submit)="submitChanges(form.value)">
 			<div class="form-group">
 				<label for="AliasInput">Alias</label>
 				<input type="text" formControlName="alias" class="form-control" placeholder="Enter Alias" />

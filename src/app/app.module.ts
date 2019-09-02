@@ -32,7 +32,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 		UsersListModule,
 		FriendRequestsModule,
 		ModalModule.forRoot()
-
 	],
 	bootstrap: [AppComponent]
 })

@@ -48,6 +48,7 @@ export class ProfileLayoutComponent implements OnInit {
 			this.profileService.getProfile(this.userEmail).subscribe(res => {
 				this.profile = res;
 				this.avatar = environment.api + res.avatar;
+				this.profileService.setMemoryProfile(res);
 			});
 			this.getImages();
 		});
@@ -73,7 +74,7 @@ export class ProfileLayoutComponent implements OnInit {
 		});
 	}
 	addImage(path) {
-		const img = new Myimg(this.userEmail, path);
+		const img = new Myimg(this.userEmail, path.dbPath);
 		this.imageService.addImage(img).subscribe(res => {
 			console.log(res);
 			this.getImages();
@@ -88,7 +89,7 @@ export class ProfileLayoutComponent implements OnInit {
 		this.modalRef = this.modal.show(template);
 	}
 
-	SubmitChanges(values) {
+	submitChanges(values) {
 		this.profile.alias = values.alias;
 		this.profile.description = values.description;
 
@@ -98,4 +99,5 @@ export class ProfileLayoutComponent implements OnInit {
 			this.modalRef.hide();
 		});
 	}
+
 }

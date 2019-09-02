@@ -16,6 +16,17 @@
 							*ngFor="let friend of friends"
 							(click)="switchTab(friend.email)"
 						>
+							<div
+								class="d-inline-block float-left"
+								[routerLink]="['/profile', friend.email]"
+								routerLinkActive="active-link"
+							>
+								<img
+									src="{{ base }}{{ friend.avatar }}"
+									style="width:100px; border-radius: 50%"
+									alt="Click to view profile"
+								/>
+							</div>
 							{{ friend.alias }}
 							<div class="d-inline-block float-right" *ngIf="addOnlineMark(friend.email); else offline">
 								<img src="assets/online.ico" alt="" />
@@ -33,6 +44,5 @@
 	</div>
 </ng-template>
 <ng-template #empty>
-
-		<h1 id="center">No friends yet</h1>
+	<h1 id="center">No friends yet</h1>
 </ng-template>

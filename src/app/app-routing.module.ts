@@ -13,6 +13,7 @@ import { ConversationsListComponent } from './conversations/conversations-list/c
 import { ProfileLayoutComponent } from './profile/profile-layout/profile-layout.component';
 import { AllUsersListComponent } from './users-list/all-users-list/all-users-list.component';
 import { FriendRequestsListComponent } from './friend-requests/friend-requests-list/friend-requests-list.component';
+import { ImageViewComponent } from './profile/image-view/image-view.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
