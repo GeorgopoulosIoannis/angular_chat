@@ -48,5 +48,4 @@ export class ListComponent implements OnInit {
 			return false;
 		}
 	}
-
 }

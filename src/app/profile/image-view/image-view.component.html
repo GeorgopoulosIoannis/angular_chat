@@ -2,18 +2,38 @@
 	<img src="{{ base }}{{ image.path }}" class="card-img-top" alt="..." (click)="tapEvent()" />
 	<div class="card-body">
 		<i class="fas fa-heart"></i> : {{ image.likesCount }} <br />
-		<i class="fas fa-comment"></i> : 20 <br /><br />
+		<i class="fas fa-comment"></i> : {{imageComments.length}} <br /><br />
 		<div class="row">
-			<div class="col-10 text-center d-flex">
-				<input type="text" class="form-control" />
-			</div>
-			<div class="col-2">
-				<button
-					id="sendmessage"
-					class="btn btn-light pull-right shadow fas fa-comment"
-					[disabled]="!curMessage"
-				></button>
+			<div class="col-12" id="comments">
+				<div *ngFor="let comment of imageComments">
+					<p>
+						<b>{{ comment.commentByAlias }} :</b> {{ comment.content }}
+					</p>
+				</div>
 			</div>
 		</div>
+
+		<form class="form-inline">
+			<div class="row">
+				<div class="col-10 text-center d-flex">
+					<input
+						type="text"
+						class="form-control"
+						name="message"
+						class="form-control"
+						value=""
+						[(ngModel)]="curComment"
+					/>
+				</div>
+				<div class="col-2">
+					<button
+						id="postComment"
+						(click)="postComment()"
+						class="btn btn-light pull-right shadow fas fa-comment"
+						[disabled]="!curComment"
+					></button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

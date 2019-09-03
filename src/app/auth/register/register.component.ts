@@ -26,12 +26,10 @@ export class RegisterComponent implements OnInit {
 		this.errors = [];
 		this.auth.register(credentials).subscribe(
 			res => {
-				debugger;
 				this.showSuccess = true;
 				this.showError = false;
 			},
 			error => {
-				debugger;
 				error.error.forEach(error => {
 					this.errors.push(error.description);
 				});

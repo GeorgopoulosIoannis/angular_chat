@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ImageWithLikes } from '../Models/image-with-likes';
+import { ImageComment } from '../Models/image-comment';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Injectable({
 	providedIn: 'root'
@@ -28,5 +30,15 @@ export class ImageService {
 	likeImage(imageId): Observable<number> {
 		const body = imageId;
 		return this.http.post<any>(environment.api + 'api/Like/like', body);
+	}
+
+	commentImage(comment: ImageComment): Observable<any> {
+		const body = comment;
+		return this.http.post<any>(environment.api + 'api/Comment/comment', body);
+	}
+
+	getImageComments(imageId): Observable<[ImageComment]> {
+		const params = new HttpParams().set('imageId', imageId);
+		return this.http.get<any>(environment.api + 'api/ImageComment', { params });
 	}
 }
