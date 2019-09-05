@@ -16,6 +16,7 @@ export class ListComponent implements OnInit, OnDestroy {
 	onlineList = [];
 	tabList: Tab[];
 	base = environment.api;
+	private onlineSubscribtion;
 	constructor(
 		private rel: RelationshipsService,
 		private shared: SharedService,
@@ -24,18 +25,23 @@ export class ListComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit() {
+		console.log('init');
 		this.hub.startNegotiation();
 		this.rel.getRelationships('1').subscribe(res => {
+
 			this.friends = res;
 			this.rel.setMemoryFriends(res);
 		});
-		this.shared.onlineConnectionList.subscribe(res => {
+		this.onlineSubscribtion = this.shared.onlineConnectionList.subscribe(res => {
+			console.log('online list');
+			console.log(res);
 			this.onlineList = res;
 		});
 	}
 
 	ngOnDestroy() {
-		this.onlineList.splice(0, this.onlineList.length);
+		console.log('destroy');
+		this.onlineSubscribtion.unsubscribe();
 	}
 	switchTab(email) {
 		this.shared.changeTab(this.shared.findOrCreateTab(email));

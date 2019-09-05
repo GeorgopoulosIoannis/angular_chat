@@ -42,6 +42,7 @@ export class AuthService {
 		if (this.jwtHelper.isTokenExpired(token) || token == null) {
 			return false;
 		}
+		this.hub.startNegotiation();
 		return true;
 	}
 }

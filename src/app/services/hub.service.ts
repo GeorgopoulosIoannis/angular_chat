@@ -32,12 +32,15 @@ export class HubService {
 
 	startNegotiation() {
 		if (!this.connected) {
+			this.connected = true;
+			console.log("in negotitation")
 			this.createConnection();
 			this.registerOnServerEvents();
 			this.startConnection();
 		}
 	}
 	stopConnection() {
+		this.connected = false;
 		this.hubConnection.stop();
 	}
 	private createConnection() {
@@ -47,6 +50,7 @@ export class HubService {
 	}
 
 	private startConnection(): void {
+		console.log("in start connection")
 		this.hubConnection
 			.start()
 			.then(() => {
