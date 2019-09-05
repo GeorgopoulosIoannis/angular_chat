@@ -19,7 +19,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'main', component: MainLayoutComponent, canActivate: [AuthGuard] },
-	{ path: 'chatbox', component: ChatBoxLayoutComponent, canActivate: [CurrentTabGuard] },
+	{ path: 'chatbox', component: ChatBoxLayoutComponent, canActivate: [CurrentTabGuard, AuthGuard] },
 	{ path: 'friends', component: ListComponent, canActivate: [AuthGuard] },
 	{ path: 'requests', component: FriendRequestsListComponent, canActivate: [AuthGuard] },
 	{ path: 'users', component: AllUsersListComponent, canActivate: [AuthGuard] },
