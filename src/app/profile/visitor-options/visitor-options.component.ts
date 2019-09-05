@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class VisitorOptionsComponent implements OnInit {
 	@Input() profile: Profile;
-
+	@Input() isFriend: boolean;
 	constructor(private relService: RelationshipsService, private shared: SharedService) {}
 
 	ngOnInit() {}

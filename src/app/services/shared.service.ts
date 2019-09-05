@@ -17,6 +17,7 @@ export class SharedService {
 	tabs: Tab[];
 	list = [];
 	connectionEstablished = false;
+
 	private tabSource = new BehaviorSubject(new Tab(''));
 	curTab = this.tabSource.asObservable();
 

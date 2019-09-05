@@ -24,7 +24,7 @@
 	</div>
 	<chat-image-grid [images]="images"></chat-image-grid>
 </div>
-<chat-visitor-options *ngIf="!IsMe()" [profile]="profile"></chat-visitor-options>
+<chat-visitor-options *ngIf="!IsMe()" [isFriend]="isFriend" [profile]="profile"></chat-visitor-options>
 <ng-template #template>
 	<div class="modal-header">
 		<h4 class="modal-title pull-left">Edit Profile</h4>

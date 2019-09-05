@@ -23,6 +23,7 @@ export class ProfileLayoutComponent implements OnInit {
 	avatar: string;
 	me: string;
 	modalRef: BsModalRef;
+	isFriend: boolean;
 	images = [];
 	form;
 
@@ -49,6 +50,7 @@ export class ProfileLayoutComponent implements OnInit {
 				this.profile = res;
 				this.avatar = environment.api + res.avatar;
 				this.profileService.setMemoryProfile(res);
+				this.checkIfFriends();
 			});
 			this.getImages();
 		});
@@ -100,4 +102,12 @@ export class ProfileLayoutComponent implements OnInit {
 		});
 	}
 
+	checkIfFriends() {
+		let friends = this.relService.getMemoryFriends();
+		for (let friend of friends) {
+			if (friend.email == this.profile.email) {
+				this.isFriend = true;
+			}
+		}
+	}
 }

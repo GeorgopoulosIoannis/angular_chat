@@ -27,13 +27,10 @@ export class ListComponent implements OnInit {
 		this.hub.startNegotiation();
 		this.rel.getRelationships('1').subscribe(res => {
 			this.friends = res;
-			console.log('friends :');
-			console.log(res);
+			this.rel.setMemoryFriends(res);
 		});
 		this.shared.onlineConnectionList.subscribe(res => {
 			this.onlineList = res;
-			console.log('online :');
-			console.log(res);
 		});
 	}
 	switchTab(email) {

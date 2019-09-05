@@ -8,6 +8,7 @@ import { UpdateStatus } from '../Models/update-status';
 	providedIn: 'root'
 })
 export class RelationshipsService {
+	friends = [];
 	constructor(private http: HttpClient) {}
 
 	getRelationships(status: string): Observable<any> {
@@ -28,5 +29,13 @@ export class RelationshipsService {
 	block(emailOut): Observable<any> {
 		const body: FriendInvite = { email: emailOut, status: 3 };
 		return this.http.post<any>(environment.api + 'api/friends/add', body);
+	}
+
+	setMemoryFriends(friends) {
+		this.friends = friends;
+	}
+
+	getMemoryFriends() {
+		return this.friends;
 	}
 }
